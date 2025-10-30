@@ -1,85 +1,66 @@
+import { ListHeaderComponent } from "@/components/shared/ListHeaderComponent";
 import CText from "@/components/ui/CText";
-import { Colors } from "@/constants/Colors";
 import { useLatestNews } from "@/queries/useLatestUpdates";
 import { LatestNews } from "@/types/LatestNews";
 import React from "react";
-import {
-  FlatList,
-  Image,
-  RefreshControl,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { FlatList, Image, RefreshControl, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Latest = () => {
   const { data, isLoading, error, refetch } = useLatestNews();
 
-  if (isLoading) return <Text>Loading...</Text>;
-  if (error) return <Text>Error: {(error as Error).message}</Text>;
+  if (isLoading)
+    return (
+      <SafeAreaView>
+        <Text>Loading...</Text>
+      </SafeAreaView>
+    );
+  if (error)
+    return (
+      <SafeAreaView>
+        <Text>Error: {(error as Error).message}</Text>
+      </SafeAreaView>
+    );
 
   const renderItem = ({ item }: { item: LatestNews }) => (
-    <View style={styles.newsContainer}>
+    <View className="rounded-2xl">
       <Image
         source={{ uri: item.image }}
-        style={styles.newsImage}
         resizeMode="cover"
+        className="rounded-t-2xl rounded-b-none w-full aspect-video object-cover"
       />
-      <CText style={styles.newsTitle}>{item.title}</CText>
+      <View className="p-2 border-x border-b border-gray-200/50 rounded-b-2xl">
+        <CText className="text-primary font-bold text-3xl text-center my-1">
+          {item.title}
+        </CText>
+        {/* <View className="bg-primary/10 rounded-full px-2 py-1 self-start">
+          <CText className="text-primary text-sm">{item.nepali_date}</CText>
+        </View> */}
+      </View>
     </View>
   );
 
-  // const listHeaderComponent = () => (
-  //   <View style={styles.listHeaderContainer}>
-  //     <CText style={styles.listHeaderTitle}>Latest News</CText>
-  //   </View>
-  // );
-
   return (
-    <SafeAreaView>
+    <SafeAreaView className="flex-1 p-2 bg-white">
       <FlatList
         data={data}
         keyExtractor={(item) => item.link}
         renderItem={renderItem}
-        // ListHeaderComponent={listHeaderComponent}
+        ListHeaderComponent={() => ListHeaderComponent("Latest News")}
         refreshControl={
           <RefreshControl refreshing={isLoading} onRefresh={refetch} />
         }
+        ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
+        ListEmptyComponent={() => (
+          <View className="flex-1 justify-center items-center">
+            <CText className="text-primary font-bold text-3xl text-center">
+              No latest news found
+            </CText>
+          </View>
+        )}
       />
     </SafeAreaView>
   );
 };
 
 export default Latest;
-
-const styles = StyleSheet.create({
-  newsContainer: {
-    paddingHorizontal: 10,
-    paddingVertical: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
-  },
-  newsTitle: {
-    fontSize: 28,
-    textAlign: "center",
-    fontWeight: "bold",
-    color: Colors.primary,
-  },
-
-  newsImage: {
-    width: "100%",
-    height: 200,
-    borderRadius: 10,
-  },
-
-  listHeaderContainer: {
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.primary,
-  },
-  listHeaderTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-});
