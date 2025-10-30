@@ -3,31 +3,26 @@ import CText from "@/components/ui/CText";
 import { usePopularUpdates } from "@/queries/usePopularUpdates";
 import { News } from "@/types/PopularNews";
 import React from "react";
-import {
-  FlatList,
-  Image,
-  RefreshControl,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { FlatList, Image, RefreshControl, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Popular = () => {
   const { data, isLoading, error, refetch } = usePopularUpdates();
 
-  if (isLoading)
+  if (isLoading) {
     return (
       <SafeAreaView>
         <Text>Loading...</Text>
       </SafeAreaView>
     );
-  if (error)
+  }
+  if (error) {
     return (
       <SafeAreaView>
         <Text>Error: {(error as Error).message}</Text>
       </SafeAreaView>
     );
+  }
 
   const renderItem = ({ item }: { item: News }) => (
     <View className="rounded-2xl">
@@ -71,5 +66,3 @@ const Popular = () => {
 };
 
 export default Popular;
-
-const styles = StyleSheet.create({});
