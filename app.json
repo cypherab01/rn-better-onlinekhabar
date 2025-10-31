@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "better-onlinekhabar",
-    "slug": "better-onlinekhabar",
+    "name": "Better Onlinekhabar",
+    "slug": "better-onlinekhabar-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -17,6 +17,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.cypherab01.onlinekhabar",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -34,6 +35,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "e3b5275d-10c8-4a8a-bffc-94981ddf5ace"
+      }
     }
   }
 }
