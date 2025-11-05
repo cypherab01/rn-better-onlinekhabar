@@ -11,7 +11,6 @@ const fetchLatestNews = async (): Promise<LatestNews[]> => {
   }
 
   const json: LatestNewsResponseType = await res.json();
-  console.log("API FETCHED...");
 
   return json.data.news;
 };

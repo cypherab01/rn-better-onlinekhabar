@@ -11,7 +11,6 @@ const fetchPopularUpdates = async () => {
   }
 
   const json: PopularNewsResponseType = await res.json();
-  console.log("API FETCHED...");
 
   return json.data.news;
 };

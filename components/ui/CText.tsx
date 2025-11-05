@@ -1,17 +1,17 @@
-import { cn } from "@/lib/utils";
-import React from "react";
-import { Text as RNText, TextProps } from "react-native";
+import React from 'react';
+import { Text as RNText, TextProps } from 'react-native';
+import { cn } from '@/lib/utils';
 
 type FontVariant =
-  | "Thin"
-  | "ExtraLight"
-  | "Light"
-  | "Regular"
-  | "Medium"
-  | "SemiBold"
-  | "Bold"
-  | "ExtraBold"
-  | "Black";
+  | 'Thin'
+  | 'ExtraLight'
+  | 'Light'
+  | 'Regular'
+  | 'Medium'
+  | 'SemiBold'
+  | 'Bold'
+  | 'ExtraBold'
+  | 'Black';
 
 interface Props extends TextProps {
   variant?: FontVariant;
@@ -19,13 +19,7 @@ interface Props extends TextProps {
   className?: string;
 }
 
-const CText: React.FC<Props> = ({
-  variant = "Regular",
-  style,
-  className,
-  children,
-  ...rest
-}) => {
+const CText: React.FC<Props> = ({ variant = 'Regular', style, className, children, ...rest }) => {
   const fontFamily = `Poppins-${variant}`;
 
   return (
