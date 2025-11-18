@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "Better OnlineKhabar",
-    "slug": "better-onlinekhabar-app",
-    "version": "2.0.0",
+    "name": "Better OK",
+    "slug": "better-ok-app",
+    "version": "2.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "betteronlinekhabar",
+    "scheme": "betterok",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
@@ -17,7 +17,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.cypherab01.onlinekhabar",
+      "package": "com.cypherab01.betterok",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
